@@ -89,6 +89,23 @@ in the process linting it.
 
 It executes your module, the way a test runner does. That is your own code.
 
+## Where it has been wrong
+
+Worth reading alongside the commitjev result above, because that one flatters
+it and this one does not.
+
+The first time jevq was run against [jobbyjev](https://github.com/yodablocks/jobbyjev)
+it produced three findings and **all three were wrong**. Each was `at least
+one`, in phrases like "at least one role or project on the same kind of
+product". The counting rule read that as a tally. It is the existential
+quantifier: the documented failure is that counting error grows with the size
+of the thing counted, and a threshold of one is the smallest case there is.
+
+`at least three`, `at most two` and `more than one` still fire. Three false
+positives out of three findings is how a linter gets switched off, which is
+the one outcome that would make this repo worthless, so the case is recorded
+here rather than quietly fixed.
+
 ## What it cannot do
 
 - **It cannot tell you whether a question separates.** This is the important
@@ -109,9 +126,9 @@ It executes your module, the way a test runner does. That is your own code.
 - **It reads the question, never the state.** A question that is perfect in
   isolation can still be wrong for the data you send it.
 
-## The other two
+## The others
 
-Three repos, in the order the problem gets harder:
+Four repos, in the order the problem gets harder:
 
 - **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)**
   measures the model itself. Does `ORDER BY` over a Jev probability put rows
@@ -120,6 +137,9 @@ Three repos, in the order the problem gets harder:
 - **[commitjev](https://github.com/yodablocks/commitjev)** builds on it. It
   reviews commits, and ships the labelled fixtures and margins that say what
   it catches. It is also where the bug above came from.
+- **[jobbyjev](https://github.com/yodablocks/jobbyjev)** also builds on it,
+  and sends one request per company rather than batching because the bench
+  measured that batching fails the ranking gate.
 - **jevq**, this one, catches the subset of question mistakes that are
   visible without running anything.
 
