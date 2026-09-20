@@ -19,7 +19,7 @@ This ecosystem has at least four linters **powered by** Jev. None of them
 lints the **Jev questions themselves**, which is the direction that matters,
 because the question is the part you cannot see is broken by reading it.
 
-The bug that prompted this is published. `commitjev` shipped a rule asking
+The bug that prompted this is published. [commitjev](https://github.com/yodablocks/commitjev) shipped a rule asking
 "does the diff delete working code **without** the message giving a reason".
 That "without" joins a second condition onto the first, and Jev is documented
 as answering the question you wrote, literally, which in practice meant
@@ -47,7 +47,7 @@ anchor it came from.
 
 ## Run it on the bug it was written for
 
-`commitjev` at `bc25e80`, before the compound question was split:
+[commitjev](https://github.com/yodablocks/commitjev) at `bc25e80`, before the compound question was split:
 
 ```
 rules:questions  unexplained_removal
@@ -108,6 +108,23 @@ It executes your module, the way a test runner does. That is your own code.
 
 - **It reads the question, never the state.** A question that is perfect in
   isolation can still be wrong for the data you send it.
+
+## The other two
+
+Three repos, in the order the problem gets harder:
+
+- **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)**
+  measures the model itself. Does `ORDER BY` over a Jev probability put rows
+  in a defensible order? Six pre-registered gates on 360 labeled rows, and a
+  hard probe where four of the six fail.
+- **[commitjev](https://github.com/yodablocks/commitjev)** builds on it. It
+  reviews commits, and ships the labelled fixtures and margins that say what
+  it catches. It is also where the bug above came from.
+- **jevq**, this one, catches the subset of question mistakes that are
+  visible without running anything.
+
+They are all mine, so none of them is independent corroboration of the
+others. Read the numbers, not the byline.
 
 ## Files
 
