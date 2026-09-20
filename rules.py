@@ -111,8 +111,14 @@ COMPOUND = re.compile(
 
 # "count as" and "does not count" are idioms meaning "qualify as", not a tally,
 # and they turn up constantly in criteria that carve out boundary cases.
+#
+# "at least one" is excluded for a different reason: it is the existential
+# quantifier, not a count. The documented failure is that error grows with the
+# size of the thing being tallied, and a threshold of one is the smallest case
+# there is. "at least three" still fires.
 COUNTING = re.compile(
-    r"\b(how many|number of|at least \w+|at most \w+|more than \w+|"
+    r"\b(how many|number of|at most \w+|more than \w+|"
+    r"at least (?!one\b|a\b|1\b)\w+|"
     r"fewer than \w+|exactly \w+|"
     r"(?<!not )(?<!n't )count(?:s|ed|ing)?\b(?!\s+(?:as|toward|towards)\b))",
     re.I

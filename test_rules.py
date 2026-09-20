@@ -59,6 +59,20 @@ def test_count_as_is_an_idiom_not_a_tally():
     assert not fired("Comments count toward the total.", "asks-to-count")
 
 
+def test_at_least_one_is_existence_not_counting():
+    """Found by running this on jobbyjev, where all three findings were wrong.
+
+    "at least one X" asks whether an X exists. The documented failure is that
+    tallying error grows with the size of the thing counted, and a threshold of
+    one is the smallest case there is. A larger threshold is a real count.
+    """
+    assert not fired("Does the resume show at least one role at a similar-stage "
+                     "company?", "asks-to-count")
+    assert not fired("Is there at least a mention of Python?", "asks-to-count")
+    assert fired("Were at least three tests added?", "asks-to-count")
+    assert fired("Were at least 5 files touched?", "asks-to-count")
+
+
 def test_real_counting_still_fires():
     for text in ("How many files changed?", "Does it touch more than one file?",
                  "Count the failing tests.", "Were at least three added?"):
