@@ -1,0 +1,28 @@
+{
+  "refund_request": {
+    "type": "noul",
+    "instructions": "Is the customer requesting a refund without having already received one?",
+    "criteria": {
+      "true": "They are asking for money back and have not been refunded yet.",
+      "false": "They are not asking for money back, or they already got it."
+    }
+  },
+  "department": {
+    "type": "choice",
+    "instructions": "Which team should handle this?",
+    "criteria": {
+      "billing": "Payments, invoicing, refunds",
+      "technical": "Bugs, outages, integrations",
+      "sales": "Pricing, upgrades, new accounts"
+    }
+  },
+  "urgency": {
+    "type": "score",
+    "instructions": "How urgent is this?",
+    "criteria": ["low", "medium", "high"]
+  },
+  "days_waiting": {
+    "type": "noul",
+    "instructions": "Count how many days the customer has been waiting and say whether it is more than 5."
+  }
+}
